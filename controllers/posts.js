@@ -27,22 +27,38 @@ module.exports = {
     }
   },
   createPost: async (req, res) => {
-    try {
-      // Upload image to cloudinary
-      const result = await cloudinary.uploader.upload(req.file.path);
-
-      await Post.create({
-        title: req.body.title,
-        image: result.secure_url,
-        cloudinaryId: result.public_id,
-        caption: req.body.caption,
-        likes: 0,
-        user: req.user.id,
-      });
-      console.log("Post has been added!");
-      res.redirect("/profile");
-    } catch (err) {
-      console.log(err);
+    const doesPostExist = Boolean(
+      await Post.findOne({
+        activityName: req.body.activityName,
+      })
+    );
+    const time = +req.body.time;
+    console.log("this is timelog: ", time, typeof time);
+    if (doesPostExist) {
+      try {
+        await Post.findOneAndUpdate(
+          { activityName: req.body.activityName },
+          {
+            $inc: { time: time },
+          }
+        );
+        console.log("Likes +1");
+        res.redirect(`/feed`);
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      try {
+        await Post.create({
+          activityName: req.body.activityName,
+          time: Number(req.body.time),
+          user: req.user.id,
+        });
+        console.log("Post has been added!");
+        res.redirect("/feed");
+      } catch (err) {
+        console.log(err);
+      }
     }
   },
   likePost: async (req, res) => {
