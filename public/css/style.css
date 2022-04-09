@@ -3,14 +3,16 @@
   font-family: "Inter", sans-serif;
 }
 body {
-  background-color: rgb(9, 26, 58);
-  color: aliceblue;
+  background-image: url("../imgs/bg-pattern.svg");
+  /* color: aliceblue; */
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-repeat: no-repeat;
+  background-color: rgba(84, 158, 160, 0.384);
 }
 .mainDiv {
   height: 50vh;
@@ -40,4 +42,23 @@ body {
 .time:hover {
   background-color: aliceblue;
   color: rgba(36, 81, 164, 0.64);
+}
+/* .container {
+  display: flex;
+  /* border: white solid 2px; */
+/* flex-direction: column;
+  align-items: center;
+
+  /* justify-content: center; */
+
+.index {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: aliceblue; */
+}
+.header-h1 {
+  /* font-size: larger; */
+  color: black;
+  text-decoration: none;
 }

@@ -8,20 +8,17 @@
               <a href="/logout" class="col-3 btn btn-primary">Logout</a>
           </div>
           <div class="mt-5">
-            <h2>Add a post</h2>
-            <form action="/post/createPost" enctype="multipart/form-data" method="POST">
+            <h2>Add a goal</h2>
+            <form action="/post/addGoal" enctype="multipart/form-data" method="POST">
               <div class="mb-3">
-                  <label for="title" class="form-label">Title</label>
-                  <input type="text" class="form-control" id="title" name="title">
+                  <label for="goalName" class="form-label">Activity</label>
+                  <input type="text" class="form-control" id="goalName" name="goalName">
               </div>
               <div class="mb-3">
-                <label for="caption" class="form-label">Caption</label>
-                <textarea class="form-control" id="caption" name="caption"></textarea>
+                <label for="time" class="form-label">Amount of Hours Per Week</label>
+                <textarea class="form-control" id="time" name="time"></textarea>
               </div>
-              <div class="mb-3">
-                <label for="imgUpload" class="form-label">Image</label>
-                <input type="file" class="form-control" id="imageUpload" name="file">
-              </div>
+
               <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
             </form>
           </div>

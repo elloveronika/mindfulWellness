@@ -1,5 +1,5 @@
-const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
+const Goal = require("../models/Goal");
 
 module.exports = {
   getProfile: async (req, res) => {
@@ -51,7 +51,7 @@ module.exports = {
       try {
         await Post.create({
           activityName: req.body.activityName,
-          time: Number(req.body.time),
+          time: time,
           user: req.user.id,
         });
         console.log("Post has been added!");
@@ -69,8 +69,20 @@ module.exports = {
           $inc: { likes: 1 },
         }
       );
-      console.log("Likes +1");
+      console.log("likes +1");
       res.redirect(`/post/${req.params.id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  addGoal: async (req, res) => {
+    try {
+      await Goal.create({
+        goalName: req.body.goalName,
+        time: req.body.time,
+      });
+      console.log("Goal has been added!");
+      res.redirect("/profile");
     } catch (err) {
       console.log(err);
     }
@@ -80,7 +92,6 @@ module.exports = {
       // Find post by id
       let post = await Post.findById({ _id: req.params.id });
       // Delete image from cloudinary
-      await cloudinary.uploader.destroy(post.cloudinaryId);
       // Delete post from db
       await Post.remove({ _id: req.params.id });
       console.log("Deleted Post");
