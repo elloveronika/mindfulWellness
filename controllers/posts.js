@@ -5,7 +5,13 @@ module.exports = {
   getProfile: async (req, res) => {
     try {
       const posts = await Post.find({ user: req.user.id });
-      res.render("profile.ejs", { posts: posts, user: req.user });
+      const goals = await Goal.find();
+      res.render("profile.ejs", {
+        posts: posts,
+        user: req.user,
+        goalName: goals,
+        time: goals,
+      });
     } catch (err) {
       console.log(err);
     }
