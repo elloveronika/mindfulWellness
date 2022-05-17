@@ -4,13 +4,10 @@ const Goal = require("../models/Goal");
 module.exports = {
   getProfile: async (req, res) => {
     try {
-      const posts = await Post.find({ user: req.user.id });
       const goals = await Goal.find();
       res.render("profile.ejs", {
-        posts: posts,
         user: req.user,
-        goalName: goals,
-        time: goals,
+        goals,
       });
     } catch (err) {
       console.log(err);
@@ -18,8 +15,19 @@ module.exports = {
   },
   getFeed: async (req, res) => {
     try {
+      //fetch most recent goal
+      //append goal to post
       const posts = await Post.find().sort({ createdAt: "desc" }).lean();
-      res.render("feed.ejs", { posts: posts });
+      const goals = await Goal.find().sort({ createdAt: "desc" }).lean();
+
+      res.render("feed.ejs", {
+        posts: [...posts],
+        goals: [...goals],
+      });
+      // .map((goal) => ({
+      //   activityName: goal.goalName,
+      //   time: (goal.time * 60) / 5,
+      // }))
     } catch (err) {
       console.log(err);
     }

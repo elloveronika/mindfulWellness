@@ -15,7 +15,7 @@ body {
   background-color: rgba(84, 158, 160, 0.384);
 }
 .mainDiv {
-  height: 50vh;
+  /* height: 50vh; */
   width: 60vw;
   text-align: center;
   /* border: white solid 1rem; */

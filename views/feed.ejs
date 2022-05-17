@@ -5,9 +5,19 @@
               <li class="activity">
                   <span><%= posts[i].activityName %></span>
                   <span class="time"><%= posts[i].time %> min</span>
+
               </li>
           <% } %>
+          <% for(let j = 0; j < goals.length; j++) { %>
+            <span> <%= goals[j].goalName %> </span>
+            <span> <%= (goals[j].time *60) / 5 %> </span>
+
+
+        <% } %>
+
       </ul>
+      <% console.log('this is goals', goals) %>
+      <%= console.log('this is posts',posts) %>
       <h2>Choose activity:</h2>
       <form action = "/post/createPost" enctype="multipart/form-data" method="POST">
           <input type = "text" placeholder="activity" name="activityName">

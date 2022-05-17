@@ -1,0 +1,7 @@
+iterate over the post and goals 
+create an object that will display my times like
+
+
+        current time /  goal
+read    30min     /     60
+zelda     null     / 60 min
